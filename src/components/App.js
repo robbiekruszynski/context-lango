@@ -1,5 +1,6 @@
 import React from "react";
 import UserCreate from "./UserCreate";
+import LanguageContext from "../contexts/LanguageContext";
 
 class App extends React.Component {
   state = { language: "english" };
@@ -14,34 +15,22 @@ class App extends React.Component {
           Select a language:
           <i
             className="flag us"
-            onClick={() => this.onLanguageChange("english")}
+            onClick={() => this.onLanguageChange("English")}
           />
           <i
             className="flag it"
             onClick={() => this.onLanguageChange("Italian")}
           />
-          <i
-            className="flag pl"
-            onClick={() => this.onLanguageChange("Polish")}
-          />
-          <i
-            className="flag fr"
-            onClick={() => this.onLanguageChange("French")}
-          />
-          <i
-            className="flag jp"
-            onClick={() => this.onLanguageChange("Japanese")}
-          />
-          <i
-            className="flag mx"
-            onClick={() => this.onLanguageChange("Spanish")}
-          />
         </div>
         {this.state.language}
-        <UserCreate />
+        <LanguageContext.Provider value={this.state.language}>
+          <UserCreate />
+        </LanguageContext.Provider>
       </div>
     );
   }
 }
 
 export default App;
+
+//value off the Provider is important with the naming convention
